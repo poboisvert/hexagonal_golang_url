@@ -24,4 +24,4 @@ Response
 
 Use in URL
 
-- http://localhost:8000/GfUMZZMVR
+http://localhost:8000/GfUMZZMVR
