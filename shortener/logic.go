@@ -4,14 +4,14 @@ import (
 	"errors"
 	"time"
 
-	"github.com/pkg/errors"
-	"github.com/terris-io/shortid"
+	errs "github.com/pkg/errors"
+	"github.com/teris-io/shortid"
 	"gopkg.in/dealancer/validate.v2"
 )
 
 var (
-	ErrRedirectNotFound = errors.New("Redirect Not Found") 
-	ErrRedirectInvalid = errors.New("Redirect Invalid") 
+	ErrRedirectNotFound = errors.New("Redirect Not Found")
+	ErrRedirectInvalid  = errors.New("Redirect Invalid")
 )
 
 type redirectService struct {
@@ -30,7 +30,7 @@ func (r *redirectService) Find(code string) (*Redirect, error) {
 
 func (r *redirectService) Store(redirect *Redirect) error {
 	if err := validate.Validate(redirect); err != nil {
-		return errs.Wrap(ErrRedirectInvalid, "service.Redirect")
+		return errs.Wrap(ErrRedirectInvalid, "service.Redirect.Store")
 	}
 	redirect.Code = shortid.MustGenerate()
 	redirect.CreatedAt = time.Now().UTC().Unix()
